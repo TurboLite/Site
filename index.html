@@ -1,70 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dream Core</title>
+    <title>Music Player</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            opacity: 0; /* Bắt đầu với độ mờ 0 */
-            transition: opacity 2s ease-in; /* Hiệu ứng fade-in trong 2 giây */
-        }
-        .container {
-            margin-top: 50px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 2s ease-in;
         }
 
-        /* Styling cho nút Play Music */
-        #playButton {
-            background-color: #28a745; /* Màu xanh lá */
+        /* Nút Đừng Bấm */
+        #clickButton {
+            background-color: rgba(40, 167, 69, 0.5); /* Màu xanh lá trong suốt */
             color: white;
-            font-size: 16px; /* Giảm kích thước chữ */
-            padding: 10px 20px; /* Giảm kích thước padding */
-            border: none;
-            border-radius: 30px; /* Bo tròn nút */
+            font-size: 24px;
+            padding: 20px 40px;
+            border: 2px solid white;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-        }
-
-        /* Thêm hiệu ứng hover */
-        #playButton:hover {
-            background-color: #218838;
-            transform: scale(1.1);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Hiệu ứng khi nhấn nút */
-        #playButton:active {
-            transform: scale(1.05);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        /* Hiệu ứng hover cho nút */
+        #clickButton:hover {
+            background-color: rgba(40, 167, 69, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
+
+        #clickButton:active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hiệu ứng xuất hiện chữ và di chuyển lên */
+        #message {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Container cho YouTube và Facebook */
+        #socialLinks {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Khoảng cách giữa các phần tử */
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #socialLinks.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling cho chữ YouTube */
+        #youtubeText {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Styling cho chữ Facebook */
+        #facebookText {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1877F2; /* Màu xanh của Facebook */
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body onload="document.body.style.opacity='1'">
     <audio id="myAudio" loop>
-        <source src="https://raw.githubusercontent.com/TurboLite/Website/main/%20i%20watch%20the%20moon.mp3" type="audio/mp3">
+        <source src="https://github.com/TurboLite/Website/blob/main/MeowMuisc.mp3?raw=true" type="audio/mp3">
         Trình duyệt của bạn không hỗ trợ thẻ audio.
     </audio>
-    
-    <div class="container">
-        <h3>Không Đó Chỉ Là Dream Core</h3>
-        <p>She / Lazy</p>
+
+    <div>
+        <!-- Nút Đừng Bấm -->
+        <button id="clickButton">Đừng Bấm</button>
+        <!-- Thông điệp xuất hiện và bay lên -->
+        <div id="message">She / Turbo Lite</div>
+        <!-- Container cho YouTube và Facebook -->
+        <div id="socialLinks">
+            <div id="youtubeText" onclick="window.open('https://www.youtube.com/@TurboXLite', '_blank')">YouTube</div>
+            <div id="facebookText" onclick="window.open('https://www.facebook.com/tuidangbuonn?mibextid=ZbWKwL', '_blank')">Facebook</div>
+        </div>
     </div>
 
-    <!-- Nút Play Music -->
-    <button id="playButton">Play Music</button>
-
     <script>
-        // Chờ người dùng nhấn nút để phát nhạc
-        document.getElementById("playButton").onclick = function() {
+        // Phát nhạc và hiển thị thông điệp
+        function playMusic() {
             var audio = document.getElementById("myAudio");
-            audio.play(); // Bắt đầu phát nhạc khi nhấn nút
-            this.style.display = 'none'; // Ẩn nút sau khi nhấn
-        };
+            var message = document.getElementById("message");
+            var socialLinks = document.getElementById("socialLinks");
+
+            // Phát nhạc nếu nhấn nút
+            if (audio.paused) {
+                audio.play();
+                document.getElementById("clickButton").style.display = 'none'; // Ẩn nút Đừng Bấm
+                message.classList.add('show'); // Hiển thị thông điệp và hiệu ứng di chuyển lên
+                socialLinks.classList.add('show'); // Hiển thị các liên kết YouTube và Facebook
+            }
+        }
+
+        // Gắn sự kiện click vào toàn bộ trang
+        document.body.addEventListener('click', playMusic);
+
+        // Nút Đừng Bấm vẫn hoạt động như bình thường
+        document.getElementById("clickButton").onclick = playMusic;
     </script>
 </body>
 </html>
