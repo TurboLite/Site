@@ -1,136 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Music Player</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 2s ease-in;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linkbio Clone</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #f5f5f5, #ddd);
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 10px 0;
+      color: #333;
+    }
+    p {
+      font-size: 16px;
+      color: #666;
+    }
+    .bold-text {
+      font-weight: bold; /* Làm chữ đậm */
+    }
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .link {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .link:hover {
+      color: #0056b3;
+    }
+    .youtube {
+      color: #007bff; /* Đổi màu YouTube thành xanh dương */
+    }
+    .image-link img {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        /* Nút Đừng Bấm */
-        #clickButton {
-            background-color: rgba(40, 167, 69, 0.5); /* Màu xanh lá trong suốt */
-            color: white;
-            font-size: 24px;
-            padding: 20px 40px;
-            border: 2px solid white;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
+    .image-link img:hover {
+      transform: scale(1.1); /* Tăng kích thước ảnh khi hover */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng đổ */
+    }
 
-        /* Hiệu ứng hover cho nút */
-        #clickButton:hover {
-            background-color: rgba(40, 167, 69, 0.8);
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        #clickButton:active {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Hiệu ứng xuất hiện chữ và di chuyển lên */
-        #message {
-            font-size: 36px;
-            font-weight: bold;
-            color: #333;
-            margin-top: 30px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        #message.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Container cho YouTube và Facebook */
-        #socialLinks {
-            display: flex;
-            justify-content: center;
-            gap: 20px; /* Khoảng cách giữa các phần tử */
-            margin-top: 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        #socialLinks.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Styling cho chữ YouTube */
-        #youtubeText {
-            font-size: 24px;
-            font-weight: bold;
-            color: red;
-            cursor: pointer;
-        }
-
-        /* Styling cho chữ Facebook */
-        #facebookText {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1877F2; /* Màu xanh của Facebook */
-            cursor: pointer;
-        }
-
-    </style>
+    .description {
+      font-size: 18px; /* Làm to chữ mô tả */
+      font-weight: bold; /* Làm chữ đậm */
+      color: red; /* Màu chữ mô tả là đỏ */
+      margin-top: 8px;
+    }
+  </style>
 </head>
-<body onload="document.body.style.opacity='1'">
-    <audio id="myAudio" loop>
-        <source src="https://github.com/TurboLite/Website/blob/main/MeowMuisc.mp3?raw=true" type="audio/mp3">
-        Trình duyệt của bạn không hỗ trợ thẻ audio.
-    </audio>
+<body>
+  <div class="container">
+    <img src="https://i.imgur.com/qfiZLyX.jpeg" alt="Avatar" class="avatar">
+    <h1>Turbo Lite</h1>
+    <p class="bold-text">Hi You, Chào Bạn!</p>
 
-    <div>
-        <!-- Nút Đừng Bấm -->
-        <button id="clickButton">Đừng Bấm</button>
-        <!-- Thông điệp xuất hiện và bay lên -->
-        <div id="message">She / Turbo Lite</div>
-        <!-- Container cho YouTube và Facebook -->
-        <div id="socialLinks">
-            <div id="youtubeText" onclick="window.open('https://www.youtube.com/@TurboXLite', '_blank')">YouTube</div>
-            <div id="facebookText" onclick="window.open('https://www.facebook.com/tuidangbuonn?mibextid=ZbWKwL', '_blank')">Facebook</div>
-        </div>
+    <!-- Liên kết ngang -->
+    <div class="links">
+      <a href="https://youtube.com/@turboxlite" class="link" target="_blank">TikTok</a>
+      <a href="https://www.turbolite.asia/2024/08/game-booster.html" class="link youtube" target="_blank">YouTube</a> <!-- Màu xanh dương cho YouTube -->
+      <a href="https://discord.gg/3MpUbv87MF" class="link" target="_blank">Discord</a>
     </div>
 
-    <script>
-        // Phát nhạc và hiển thị thông điệp
-        function playMusic() {
-            var audio = document.getElementById("myAudio");
-            var message = document.getElementById("message");
-            var socialLinks = document.getElementById("socialLinks");
-
-            // Phát nhạc nếu nhấn nút
-            if (audio.paused) {
-                audio.play();
-                document.getElementById("clickButton").style.display = 'none'; // Ẩn nút Đừng Bấm
-                message.classList.add('show'); // Hiển thị thông điệp và hiệu ứng di chuyển lên
-                socialLinks.classList.add('show'); // Hiển thị các liên kết YouTube và Facebook
-            }
-        }
-
-        // Gắn sự kiện click vào toàn bộ trang
-        document.body.addEventListener('click', playMusic);
-
-        // Nút Đừng Bấm vẫn hoạt động như bình thường
-        document.getElementById("clickButton").onclick = playMusic;
-    </script>
+    <!-- Ảnh với mô tả và URL khi nhấp vào -->
+    <div class="image-link">
+      <p class="description">> Trang Website Tải Game Booster <</p>
+<p class="description">👇👇</p>
+      <a href="https://youtu.be/bmLsSSrZFDc" target="_blank">
+        <img src="https://i.imgur.com/LDRIrmB.jpeg" alt="Example 1">
+      </a>
+    </div>
+    <div class="image-link">
+      <p class="description">> Game Booster Lag Fix Lag Roblox <</p>
+<p class="description">👇👇</p>
+      <a href="https://youtu.be/bmLsSSrZFDc" target="_blank">
+        <img src="https://i.imgur.com/4RGfrqI.jpeg" alt="Example 2">
+      </a>
+    </div>
+    <div class="image-link">
+      <p class="description">> G-Vortex Vô Hạn Fix Lag Game <</p>
+<p class="description">👇👇</p>
+      <a href="https://youtu.be/jY4cgfLzr6Y" target="_blank">
+        <img src="https://i.imgur.com/VD61pQB.jpeg" alt="Example 3">
+      </a>
+    </div>
+  </div>
 </body>
 </html>
