@@ -6,7 +6,29 @@
   <title>Turbo Lite</title>
   <!-- Thêm biểu tượng cho website -->
   <link rel="icon" href="https://i.imgur.com/qfiZLyX.jpeg" type="image/jpeg">
+<style>
+  .snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 9999;
+    pointer-events: none;
+    color: white;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: fall linear infinite;
+  }
 
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0.3;
+    }
+  }
+</style>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -129,4 +151,34 @@
     <p style="font-size: 14px; color: #888; margin-top: 30px;">© 2025 Turbo Lite Mọi Quyền Được Bảo Lưu.</p>
   </div>
 </body>
+<div id="snow-container"></div>
+
+<script>
+  const snowContainer = document.getElementById('snow-container');
+  const maxSnowflakes = 50; // Số lượng bông tuyết tối đa cùng lúc
+  const snowflakes = [];
+
+  function createSnowflake() {
+    if (snowflakes.length >= maxSnowflakes) return;
+
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.textContent = '❄';
+    snowflake.style.left = Math.random() * window.innerWidth + 'px';
+    snowflake.style.animationDuration = Math.random() * 3 + 4 + 's'; // Thời gian rơi ngẫu nhiên
+    snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Kích thước ngẫu nhiên
+
+    snowContainer.appendChild(snowflake);
+    snowflakes.push(snowflake);
+
+    // Xóa bông tuyết sau khi hiệu ứng kết thúc
+    setTimeout(() => {
+      snowflake.remove();
+      snowflakes.splice(snowflakes.indexOf(snowflake), 1);
+    }, 7000);
+  }
+
+  // Tạo bông tuyết mới mỗi 200ms
+  setInterval(createSnowflake, 200);
+</script>
 </html>
