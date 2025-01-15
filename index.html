@@ -29,99 +29,86 @@
     }
   }
 </style>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(to bottom, #87ceeb, #87ceeb); /* Xanh dương trên, hồng dưới */
-    padding: 20px;
-    margin: 0;
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #f5f5f5, #ddd);
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 10px 0;
+      color: #333;
+    }
+    p {
+      font-size: 16px;
+      color: #666;
+    }
+    .bold-text {
+      font-weight: bold; /* Làm chữ đậm */
+    }
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .link {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .link:hover {
+      color: #0056b3;
+    }
+    .youtube {
+      color: #007bff; /* Đổi màu YouTube thành xanh dương */
+    }
+    .image-link img {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.9); /* Làm mờ nền */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
-    backdrop-filter: blur(10px); /* Kính mờ */
-  }
+    .image-link img:hover {
+      transform: scale(1.1); /* Tăng kích thước ảnh khi hover */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng đổ */
+    }
 
-  .avatar {
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    margin: 0 auto;
-    border: 2px solid #ff80b5; /* Viền nổi bật */
-    box-shadow: 0 4px 10px rgba(255, 128, 181, 0.4); /* Bóng nhẹ */
-  }
-
-  h1 {
-    font-size: 28px;
-    margin: 10px 0;
-    color: #333;
-    animation: fadeIn 2s ease-in-out; /* Hiệu ứng xuất hiện */
-  }
-
-  p {
-    font-size: 16px;
-    color: #666;
-  }
-
-  .bold-text {
-    font-weight: bold;
-  }
-
-  .links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-  }
-
-  .link {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-
-  .link:hover {
-    color: #ff80b5;
-    transform: scale(1.1); /* Phóng to khi hover */
-  }
-
-  .image-link img {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px 0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .image-link img:hover {
-    transform: scale(1.1); /* Tăng kích thước khi hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng đổ */
-  }
-
-  .description {
-    font-size: 18px; /* Làm to chữ mô tả */
-    font-weight: bold;
-    color: red;
-    margin-top: 8px;
-  }
-  }
-</style>
+    .description {
+      font-size: 18px; /* Làm to chữ mô tả */
+      font-weight: bold; /* Làm chữ đậm */
+      color: red; /* Màu chữ mô tả là đỏ */
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="https://i.imgur.com/qfiZLyX.jpeg" alt="Avatar" class="avatar">
     <h1>Turbo Lite</h1>
-    <p class="bold-text">Hello, Sibikidi Toilet :D</p>
+    <p class="bold-text">Hi You, Chào Bạn!</p>
 
     <!-- Liên kết ngang -->
     <div class="links">
@@ -132,28 +119,28 @@
 
     <!-- Ảnh với mô tả và URL khi nhấp vào -->
     <div class="image-link">
-      <p class="description">> Website Link Game Booster <</p>
+      <p class="description">> Trang Website Tải Game Booster <</p>
       <p class="description">👇👇</p>
       <a href="https://www.turbolite.asia/2024/08/game-booster.html" target="_blank">
         <img src="https://i.imgur.com/LDRIrmB.jpeg" alt="Example 1">
       </a>
     </div>
     <div class="image-link">
-      <p class="description">> Video Game Booster X4 <</p>
+      <p class="description">> Game Booster Lag Fix Lag Roblox <</p>
       <p class="description">👇👇</p>
       <a href="https://youtu.be/bmLsSSrZFDc" target="_blank">
         <img src="https://i.imgur.com/4RGfrqI.jpeg" alt="Example 2">
       </a>
     </div>
     <div class="image-link">
-      <p class="description">> Video G-Vortex [Premium] < </p>
+      <p class="description">> G-Vortex Vô Hạn Fix Lag Game <</p>
       <p class="description">👇👇</p>
       <a href="https://youtu.be/jY4cgfLzr6Y" target="_blank">
         <img src="https://i.imgur.com/VD61pQB.jpeg" alt="Example 3">
       </a>
     </div>
     <div class="image-link">
-      <p class="description">> Website Link Hack Roblox <</p>
+      <p class="description">> Trang Website Tải Hack Roblox <</p>
       <p class="description">👇👇</p>
       <a href="https://www.turbolite.asia/2024/08/link-tai-hack-va-script-blox-fruit.html?m=1" target="_blank">
         <img src="https://i.imgur.com/UjQ2EaM.jpeg" alt="Example 1">
@@ -161,14 +148,14 @@
     </div>
 
     <!-- Thêm phần bản quyền -->
-    <p style="font-size: 14px; color: #888; margin-top: 30px;">© Turbo Lite</p>
+    <p style="font-size: 14px; color: #888; margin-top: 30px;">© 2025 Turbo Lite Mọi Quyền Được Bảo Lưu.</p>
   </div>
 </body>
 <div id="snow-container"></div>
 
 <script>
   const snowContainer = document.getElementById('snow-container');
-  const maxSnowflakes = 30; // Số lượng bông tuyết tối đa cùng lúc
+  const maxSnowflakes = 50; // Số lượng bông tuyết tối đa cùng lúc
   const snowflakes = [];
 
   function createSnowflake() {
@@ -178,9 +165,8 @@
     snowflake.classList.add('snowflake');
     snowflake.textContent = '❄';
     snowflake.style.left = Math.random() * window.innerWidth + 'px';
-    snowflake.style.animationDuration = Math.random() * 2 + 3 + 's'; // Thời gian rơi ngẫu nhiên
-    snowflake.style.fontSize = Math.random() * 15 + 10 + 'px'; // Kích thước ngẫu nhiên
-    snowflake.style.color = ['#ffffff', '#87ceeb', '#ff80b5'][Math.floor(Math.random() * 3)]; // Màu ngẫu nhiên
+    snowflake.style.animationDuration = Math.random() * 3 + 4 + 's'; // Thời gian rơi ngẫu nhiên
+    snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Kích thước ngẫu nhiên
 
     snowContainer.appendChild(snowflake);
     snowflakes.push(snowflake);
