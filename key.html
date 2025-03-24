@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 400px;
+            width: 80%;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .key-container {
+            background-color: pink;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: dark;
+            display: none;
+        }
+        .loading {
+            font-size: 20px;
+            font-weight: bold;
+            color: pink;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Key UgPhone</h2>
+
+        <div class="loading" id="loadingText">Check Key...</div>
+
+        <div class="key-container" id="keyContainer">
+            <span id="keyDisplay">...</span>
+        </div>
+    </div>
+
+    <script>
+        const keyStorageName = "user_key";
+        const timeStorageName = "key_time";
+        const indexStorageName = "key_index";
+        const expirationTime = 25 * 60 * 60 * 1000; // 25 giờ
+
+        // 🔹 10 Key cố định (Thay đổi tại đây) 🔹
+        const keysList = [
+            "KEY_ABC123", "KEY_DEF456", "KEY_GHI789", "KEY_JKL012",
+            "KEY_MNO345", "KEY_PQR678", "KEY_STU901", "KEY_VWX234",
+            "KEY_YZA567", "KEY_BCD890"
+        ];
+        const redirectURL = "https://www.turbolite.asia/2024/05/ugphone-x-ultra-android-va-ios.html"; // Link chuyển hướng
+        const webhookURL = "https://discord.com/api/webhooks/1353617851713458246/Hx08scdaIBwk1A7tHITgrI3fdmRd0Af4CKU9Wvxbtf0zQrY0L7Nu8GgsX9eIdqxlybrg"; // Webhook Discord
+
+        function getCurrentKey() {
+            let savedTime = localStorage.getItem(timeStorageName);
+            let savedIndex = localStorage.getItem(indexStorageName);
+            let currentTime = new Date().getTime();
+
+            if (!savedTime || !savedIndex || currentTime - savedTime >= expirationTime) {
+                let newIndex = (savedIndex === null) ? 0 : (parseInt(savedIndex) + 1) % keysList.length;
+                localStorage.setItem(indexStorageName, newIndex);
+                localStorage.setItem(timeStorageName, currentTime);
+                localStorage.setItem(keyStorageName, keysList[newIndex]);
+            }
+            return localStorage.getItem(keyStorageName);
+        }
+
+        async function sendWebhook(usedKey) {
+            try {
+                let ipResponse = await fetch("https://api.ipify.org?format=json");
+                let ipData = await ipResponse.json();
+                let userIP = ipData.ip;
+
+                let userAgent = navigator.userAgent;
+                let deviceType = /Mobi|Android/i.test(userAgent) ? "Mobile" : /Tablet|iPad/i.test(userAgent) ? "Tablet" : "PC";
+                let androidVersion = "Không phải Android";
+                let match = userAgent.match(/Android\s([\d.]+)/);
+                if (match) androidVersion = `Android ${match[1]}`;
+
+                const embedMessage = {
+                    embeds: [{
+                        title: "Webhook UgPhone",
+                        color: 3447003,
+                        fields: [
+                            { name: "Key:", value: `\`${usedKey}\``, inline: false },
+                            { name: "IP:", value: `\`${userIP}\``, inline: false },
+                            { name: "Thiết Bị:", value: `\`${deviceType}\``, inline: true },
+                            { name: "Android:", value: `\`${androidVersion}\``, inline: true }
+                        ],
+                        footer: { text: new Date().toLocaleString() }
+                    }]
+                };
+
+                fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(embedMessage)
+                });
+
+            } catch (error) {
+                console.error("Lỗi lấy/gửi IP:", error);
+            }
+        }
+
+        function showKey() {
+            let key = getCurrentKey();
+            document.getElementById("loadingText").style.display = "block";
+
+            // Hiển thị key sau 5 giây
+            setTimeout(() => {
+                document.getElementById("loadingText").style.display = "none";
+                document.getElementById("keyDisplay").innerText = key;
+                document.getElementById("keyContainer").style.display = "block";
+                sendWebhook(key);
+            }, 10000);
+        }
+
+        function checkAndRedirect() {
+            if (!localStorage.getItem(keyStorageName)) {
+                document.getElementById("loadingText").style.display = "block";
+                
+                setTimeout(() => {
+                    // 🔹 Mở trang chuyển hướng trong tab mới thay vì thay thế trang hiện tại
+                    window.open(redirectURL, "_blank");
+
+                    // Hiển thị key ngay sau khi mở tab mới
+                    showKey();
+                }, 2000);
+            } else {
+                showKey();
+            }
+        }
+
+        checkAndRedirect(); // Kiểm tra ngay khi vào trang
+    </script>
+
+</body>
+</html>
