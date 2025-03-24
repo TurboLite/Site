@@ -16,13 +16,13 @@
             background-color: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 1px 4px 10px rgba(1, 0, 0, 0.1);
+            box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
             max-width: 400px;
             width: 80%;
         }
         h2 {
-            margin-bottom: 20px;
+            margin-top: 10px;
         }
         .key-container {
             background-color: pink;
@@ -113,11 +113,11 @@ fetchTitle();
         const expirationTime = 30 * 60 * 60 * 1000; // 25 giờ
 
         const keysList = [
-            "KEY_ABC123", "KEY_DEF456", "KEY_GHI789", "KEY_JKL012",
+            "KEY_AWC12w", "KEY_DEF456", "KEY_GHI789", "KEY_JKL012",
             "KEY_MNO345", "KEY_PQR678", "KEY_STU901", "KEY_VWX234",
             "KEY_YZA567", "KEY_BCD890"
         ];
-        const redirectURL = "https://www.turbolite.asia/2024/05/ugphone-x-ultra-android-va-ios.html"; // Link chuyển hướng
+        const redirectURL = "https://ez4short.com/GetKey"; // Link chuyển hướng
 
         function getCurrentKey() {
             let savedTime = localStorage.getItem(timeStorageName);
@@ -153,7 +153,7 @@ fetchTitle();
             let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-            document.getElementById("countdownText").innerText = `${hours}h : ${minutes} : ${seconds} `;
+            document.getElementById("countdownText").innerText = `${hours}H : ${minutes}P : ${seconds}S `;
             document.getElementById("countdownText").style.display = "block";
         }
 
