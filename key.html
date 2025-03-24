@@ -159,7 +159,7 @@ fetchTitle();
 
         function startCountdown() {
             updateCountdown();
-            setInterval(updateCountdown, 5000);
+            setInterval(updateCountdown, 1000);
         }
 
         function showKey() {
@@ -173,7 +173,7 @@ fetchTitle();
                 document.getElementById("keyContainer").style.display = "block";
                 localStorage.setItem(gotKeyStorageName, "true"); // Đánh dấu đã lấy key
                 startCountdown(); // Bắt đầu đếm ngược
-            }, 5000);
+            }, 51000);
         }
 
         function handleGetKeyButtonClick() {
