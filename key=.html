@@ -44,47 +44,22 @@
 </head>
 <body>
 
-<script>
-async function fetchTitle() {
-    try {
-        const response = await fetch("https://turbolite.github.io/MainKey/KEY");
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        const title = doc.querySelector("title")?.innerText || "error key";
-
-        document.getElementById("title").textContent = title;
-    } catch (error) {
-        console.error("Lỗi!:", error);
-        document.getElementById("title").textContent = "Error!?";
-    }
-}
-
-// Gọi hàm ngay lập tức khi tải trang
-fetchTitle();
-
-//
-setInterval(fetchTitle, 5000);
-</script>
-</script>
     <div class="container">
         <h2>Key UgPhone</h2>
 
         <div class="key-container">
-            <span id="keyDisplay"><div id="title"></div>
-</span>
+            <span id="keyDisplay">...</span>
         </div>
     </div>
 
     <footer>
-        <p>© <span id="year"></span> Powered by Turbo Lite .</p>
+        <p>© <span id="year"></span> Powered by Turbo Lite.</p>
     </footer>
 
     <script>
         document.getElementById("year").innerText = new Date().getFullYear();
 
-        const key = "<div id="title"></div>
-"; //
+        const key = "KEY_PkUWa803"; 
 
         function showKey() {
             document.getElementById("keyDisplay").innerText = key;
