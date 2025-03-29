@@ -51,15 +51,21 @@ async function fetchTitle() {
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, "text/html");
-        const title = doc.querySelector("title").innerText;
-        
+        const title = doc.querySelector("title")?.innerText || "error key";
+
         document.getElementById("title").textContent = title;
     } catch (error) {
         console.error("Lỗi!:", error);
+        document.getElementById("title").textContent = "Error!?";
     }
 }
 
+// Gọi hàm ngay lập tức khi tải trang
 fetchTitle();
+
+//
+setInterval(fetchTitle, 5000);
+</script>
 </script>
     <div class="container">
         <h2>Key UgPhone</h2>
