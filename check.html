@@ -35,7 +35,6 @@
             padding: 10px 20px;
             font-size: 16px;
             font-weight: bold;
-            color: dark;
             background-color: pink;
             border: none;
             border-radius: 5px;
@@ -52,27 +51,32 @@
         }
     </style>
 </head>
-<body><div class="container">
-    <h2>Key UgPhone</h2>
-    <div class="loading" id="loadingText">Check IP...</div>
-    <button class="button" id="redirectButton">Bấm Vào Đây</button>
-</div>
-
-<script>
+<body>
+    <div class="container">
+        <h2>Key UgPhone</h2>
+        <div class="loading" id="loadingText">Check Key...</div>
+        <button class="button" id="redirectButton">Bấm Vào Đây</button>
+    </div><script>
     function redirectToURL() {
         document.getElementById("loadingText").style.display = "block";
         document.getElementById("redirectButton").style.display = "none";
         
         setTimeout(() => {
+            sessionStorage.setItem("redirected", "true");
             window.location.href = "https://shrinkme.ink/checkpoint";
         }, 1000);
     }
 
     document.getElementById("redirectButton").addEventListener("click", redirectToURL);
+
+    // Kiểm tra nếu đã được chuyển hướng trước đó
+    if (sessionStorage.getItem("redirected")) {
+        window.location.href = "https://shrinkme.ink/checkpoint";
+    }
 </script>
 
 </body>
-</html>
 <footer>
     <p>© Powered by Turbo Lite</p>
 </footer>
+</html>
