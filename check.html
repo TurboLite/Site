@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key UgPhone Mod</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 400px;
+            width: 80%;
+        }
+        h2 {
+            margin-top: 10px;
+        }
+        .loading {
+            font-size: 20px;
+            font-weight: bold;
+            color: pink;
+            margin-top: 20px;
+            display: none;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: dark;
+            background-color: pink;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 450px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body><div class="container">
+    <h2>Key UgPhone</h2>
+    <div class="loading" id="loadingText">Check IP...</div>
+    <button class="button" id="redirectButton">Bấm Vào Đây</button>
+</div>
+
+<script>
+    function redirectToURL() {
+        document.getElementById("loadingText").style.display = "block";
+        document.getElementById("redirectButton").style.display = "none";
+        
+        setTimeout(() => {
+            window.location.href = "https://shrinkme.ink/checkpoint";
+        }, 1000);
+    }
+
+    document.getElementById("redirectButton").addEventListener("click", redirectToURL);
+</script>
+
+</body>
+</html>
+<footer>
+    <p>© Powered by Turbo Lite</p>
+</footer>
