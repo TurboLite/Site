@@ -39,7 +39,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 0px;
+            margin-top: 5px;
         }
         .button:hover {
             background-color: #0056b3;
@@ -60,18 +60,17 @@
     function redirectToURL() {
         document.getElementById("loadingText").style.display = "block";
         document.getElementById("redirectButton").style.display = "none";
-        
+        sessionStorage.setItem("redirected", "true");
         setTimeout(() => {
-            sessionStorage.setItem("redirected", "true");
             window.location.href = "https://shrinkme.ink/checkpoint";
         }, 1000);
     }
 
     document.getElementById("redirectButton").addEventListener("click", redirectToURL);
 
-    // Kiểm tra nếu đã được chuyển hướng trước đó
+    // Kiểm tra nếu đã bấm nút trước đó
     if (sessionStorage.getItem("redirected")) {
-        window.location.href = "https://shrinkme.ink/checkpoint";
+        redirectToURL();
     }
 </script>
 
