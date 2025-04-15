@@ -54,6 +54,21 @@
       font-size: 14px;
       color: #d32f2f;
     }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
   </style>
 </head>
 <body>
@@ -62,6 +77,7 @@
     <p>Nếu bạn đã tạo Key trong 25h qua, nó sẽ hiển thị bên dưới.</p>
     <input type="text" id="keyDisplay" readonly />
     <div id="message"></div>
+    <button onclick="createKey()">Tạo Key</button>
   </div>
 
   <script>
@@ -69,20 +85,39 @@
     const timeStorage = "lastKeyTime";
     const maxKeyTime = 25 * 60 * 60 * 1000; // 25 giờ
 
-    const storedKey = localStorage.getItem(keyStorage);
-    const storedTime = parseInt(localStorage.getItem(timeStorage));
+    const keyDisplay = document.getElementById("keyDisplay");
+    const message = document.getElementById("message");
 
-    const now = Date.now();
+    function showKey() {
+      const storedKey = localStorage.getItem(keyStorage);
+      const storedTime = parseInt(localStorage.getItem(timeStorage));
+      const now = Date.now();
 
-    if (storedKey && storedTime && (now - storedTime) < maxKeyTime) {
-      document.getElementById("keyDisplay").value = storedKey;
-      document.getElementById("message").textContent = "Key của bạn vẫn còn hiệu lực.";
-      document.getElementById("message").style.color = "#2e7d32";
-    } else {
-      document.getElementById("keyDisplay").value = "";
-      document.getElementById("message").textContent = "Không tìm thấy key hoặc đã hết hạn. Vui lòng tạo lại.";
-      document.getElementById("message").style.color = "#d32f2f";
+      if (storedKey && storedTime && (now - storedTime) < maxKeyTime) {
+        keyDisplay.value = storedKey;
+        message.textContent = "Key của bạn vẫn còn hiệu lực.";
+        message.style.color = "#2e7d32";
+      } else {
+        keyDisplay.value = "";
+        message.textContent = "Không tìm thấy key hoặc đã hết hạn. Vui lòng tạo lại.";
+        message.style.color = "#d32f2f";
+      }
     }
+
+    function createKey() {
+      const now = Date.now();
+      const newKey = "KEY_" + Math.random().toString(36).substring(2, 8).toUpperCase();
+
+      localStorage.setItem(keyStorage, newKey);
+      localStorage.setItem(timeStorage, now.toString());
+
+      keyDisplay.value = newKey;
+      message.textContent = "Key đã được tạo thành công!";
+      message.style.color = "#2e7d32";
+    }
+
+    // Hiển thị key khi mở trang
+    showKey();
   </script>
 </body>
 </html>
