@@ -4,172 +4,269 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turbo Lite</title>
-  <!-- Thêm biểu tượng cho website -->
-  <link rel="icon" href="https://i.imgur.com/qfiZLyX.jpeg" type="image/jpeg">
-<style>
-  .snowflake {
-    position: fixed;
-    top: -10px;
-    z-index: 9999;
-    pointer-events: none;
-    color: white;
-    font-size: 20px;
-    opacity: 0.8;
-    animation: fall linear infinite;
-  }
-
-  @keyframes fall {
-    0% {
-      transform: translateY(-100px);
-      opacity: 1;
+  <link rel="icon" href="https://turbolite.xyz/logo.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    100% {
-      transform: translateY(100vh);
-      opacity: 0.3;
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
-  }
-</style>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(to bottom, #p); /* Xanh dương trên, hồng dưới */
-    padding: 20px;
-    margin: 0;
-  }
 
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.9); /* Làm mờ nền */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
-    backdrop-filter: blur(10px); /* Kính mờ */
-  }
+    .background-shapes {
+      display: none;
+    }
 
-  .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0 auto;
-    border: 2px solid #00FF00; /* Viền nổi bật */
-    box-shadow: 0 4px 10px rgba(255, 128, 181, 0.4); /* Bóng nhẹ */
-  }
+    .container {
+      max-width: 450px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 30px;
+      padding: 40px 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid #000000;
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.8s ease-out;
+      margin: 20px auto;
+    }
 
-  h1 {
-    font-size: 28px;
-    margin: 10px 0;
-    color: #333;
-    animation: fadeIn 2s ease-in-out; /* Hiệu ứng xuất hiện */
-  }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  p {
-    font-size: 16px;
-    color: #666;
-  }
+    .avatar-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+    }
 
-  .bold-text {
-    font-weight: bold;
-  }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid #000000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
 
-  .links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-  }
+    .avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
 
-  .link {
-    text-decoration: none;
-    color: #ff80b5;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
+    .avatar-ring {
+      display: none;
+    }
 
-  .link:hover {
-    color: #00FF00;
-    transform: scale(1.1); /* Phóng to khi hover */
-  }
+    h1 {
+      font-size: 32px;
+      margin: 10px 0;
+      color: #000000;
+      text-shadow: none;
+      font-weight: 700;
+      text-align: center;
+    }
 
-  .image-link img {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px 0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .subtitle {
+      font-size: 16px;
+      color: #000000;
+      font-weight: 500;
+      margin-bottom: 25px;
+      text-align: center;
+    }
 
-  .image-link img:hover {
-    transform: scale(1.1); /* Tăng kích thước khi hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng đổ */
-  }
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 25px 0;
+    }
 
-  .description {
-    font-size: 18px; /* Làm to chữ mô tả */
-    font-weight: bold;
-    color: red;
-    margin-top: 8px;
-  }
-  }
-</style>
+    .link {
+      text-decoration: none;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 24px;
+      background: #ffffff;
+      border-radius: 25px;
+      border: 2px solid #000000;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .link:hover {
+      background: #000000;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-link {
+      margin: 25px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .image-link:hover {
+      transform: translateY(-5px);
+    }
+
+    .description {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+      text-shadow: none;
+      text-align: center;
+    }
+
+    .emoji {
+      font-size: 20px;
+      animation: bounce 1s infinite;
+      text-align: center;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .image-link a {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .image-link img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 2px solid #000000;
+    }
+
+    .image-link img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .copyright {
+      font-size: 14px;
+      color: #000000;
+      margin-top: 30px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 26px;
+      }
+      
+      .links {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .link {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://i.imgur.com/qfiZLyX.jpeg" alt="Avatar" class="avatar">
-    <h1>Turbo Lite</h1>
-    <p class="bold-text">Hello, I'm Still Here >.<</p>
+  <div class="background-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
 
-    <!-- Liên kết ngang -->
+  <div class="container">
+    <div class="avatar-wrapper">
+      <div class="avatar-ring"></div>
+      <img src="https://turbolite.xyz/logo.png" alt="Avatar" class="avatar">
+    </div>
+    
+    <h1>Turbo Lite</h1>
+    <p class="subtitle">Hello You can call me Turbo Lite, Welcome come to this page Here I have compiled the Link Game Booster, I'm still Online Discord TikTok YouTube</p>
+    
+        <p class="subtitle">About - Founder: Turbo Lite: Country: 🇻🇳</p>     
+        <p class="subtitle">Contact turboxlite@gmail.com</p>
+
     <div class="links">
       <a href="https://www.tiktok.com/@game.turbografx" class="link" target="_blank">TikTok</a>
-      <a href="https://youtube.com/@turboxlite" class="link youtube" target="_blank">YouTube</a> <!-- Màu xanh dương cho YouTube -->
+      <a href="https://youtube.com/@turboxlite" class="link" target="_blank">YouTube</a>
       <a href="https://discord.gg/3MpUbv87MF" class="link" target="_blank">Discord</a>
     </div>
 
-    <!-- Ảnh với mô tả và URL khi nhấp vào -->
     <div class="image-link">
-      <p class="description">> Website Link Game Booster <</p>
-      <p class="description">👇👇</p>
+      <p class="description">&gt; Website Download Game Booster &lt;</p>
+      <p class="emoji">👇👇</p>
       <a href="https://www.turbolite.asia/2025/04/game-booster-fix-lag-android.html" target="_blank">
-        <img src="https://i.imgur.com/LDRIrmB.jpeg" alt="Turbo Lite">
+        <img src="https://i.imgur.com/LDRIrmB.jpeg" alt="Game Booster">
       </a>
     </div>
+
     <div class="image-link">
-      <p class="description">> Video Game Booster X4 <</p>
-      <p class="description">👇👇</p>
+      <p class="description">&gt; Video Game Booster X4 &lt;</p>
+      <p class="emoji">👇👇</p>
       <a href="https://youtu.be/bmLsSSrZFDc" target="_blank">
-        <img src="https://i.imgur.com/4RGfrqI.jpeg" alt="Turbo Lite">
+        <img src="https://i.imgur.com/4RGfrqI.jpeg" alt="Game Booster X4">
       </a>
     </div>
+
     <div class="image-link">
-      <p class="description">> Video G-Vortex [Premium] < </p>
-      <p class="description">👇👇</p>
+      <p class="description">&gt; Video G-Vortex [Premium] &lt;</p>
+      <p class="emoji">👇👇</p>
       <a href="https://youtu.be/PZX1cxftg2w" target="_blank">
-        <img src="https://i.imgur.com/VD61pQB.jpeg" alt="Turbo Lite">
+        <img src="https://i.imgur.com/VD61pQB.jpeg" alt="G-Vortex">
       </a>
     </div>
+
     <div class="image-link">
-      <p class="description">> Website Link Hack Roblox <</p>
-      <p class="description">👇👇</p>
+      <p class="description">&gt; Website Link Hack Roblox &lt;</p>
+      <p class="emoji">👇👇</p>
       <a href="https://www.turbolite.asia/2025/04/hack.html?m=1" target="_blank">
-        <img src="https://i.imgur.com/UjQ2EaM.jpeg" alt="Turbo Lite">
+        <img src="https://i.imgur.com/UjQ2EaM.jpeg" alt="Hack Roblox">
       </a>
     </div>
+
     <div class="image-link">
-      <p class="description">> Website Link Script Roblox <</p>
-      <p class="description">👇👇</p>
+      <p class="description">&gt; Website Link Script Roblox &lt;</p>
+      <p class="emoji">👇👇</p>
       <a href="https://www.turbolite.asia/2024/10/script-blox-fruit.html" target="_blank">
-        <img src="https://i.imgur.com/IhuMwRt.jpeg" alt="Turbo Lite">
+        <img src="https://i.imgur.com/IhuMwRt.jpeg" alt="Script Roblox">
       </a>
     </div>
-    <!-- Thêm phần bản quyền -->
-    <p style="font-size: 15px; color: #888; margin-top: 30px;">© Turbo Lite</p>
+
+    <p class="copyright">© Turbo Lite All rights reserved</p>
   </div>
 </body>
-<div id="snow-container"></div>
-</script>
 </html>
