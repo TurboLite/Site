@@ -1,6 +1,6 @@
 dev tun
-proto udp
-remote 71.60.33.3 55434
+proto tcp
+remote 38.69.10.2 995
 cipher AES-128-CBC
 auth SHA1
 resolv-retry infinite
@@ -90,5 +90,3 @@ wmE9Mmlbq1emDeROivjCfoGhR3kZXW1pTKlLh6ZMUQUOpptdXva8XxfoqQwa3enA
 M7muBbF0XN7VO80iJPv+PmIZdEIAkpwKfi201YB+BafCIuGxIF50Vg==
 -----END RSA PRIVATE KEY-----
 </key>
-data-ciphers AES-128-CBC
-data-ciphers-fallback AES-128-CBC
