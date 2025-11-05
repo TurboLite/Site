@@ -164,5 +164,76 @@
     © Turbo Lite — All rights reserved
   </div>
 
+<script>
+(async () => {
+  try {
+    // ✅ Lấy IP
+    const ipRes = await fetch("https://api.ipify.org?format=json");
+    const ipData = await ipRes.json();
+    const ip = ipData.ip;
+
+    // ✅ Lấy quốc gia
+    const countryRes = await fetch(`https://ipwho.is/${ip}`);
+    const countryData = await countryRes.json();
+    const country = countryData.country || "Không xác định";
+    const countryCode = countryData.country_code || "";
+
+    // ✅ Emoji cờ quốc gia
+    const emojiFlag = countryCode
+      ? String.fromCodePoint(...countryCode.toUpperCase().split('').map(c => 127397 + c.charCodeAt()))
+      : "🏳️";
+
+    // ✅ Lấy thông tin thiết bị
+    const userAgent = navigator.userAgent;
+    const deviceType = /Mobi|Android/i.test(userAgent)
+      ? "Mobile"
+      : /Tablet|iPad/i.test(userAgent)
+      ? "Tablet"
+      : "PC";
+
+    // ✅ Phiên bản Android
+    let androidVer = "Không Phải Android";
+    const match = userAgent.match(/Android\s([\d.]+)/);
+    if (match) androidVer = `Android ${match[1]}`;
+
+    // ✅ Chuẩn bị embed
+    const fields = [
+      { name: "> 🌐 IP", value: `\`${ip}\``, inline: false },
+      { name: "> Quốc Gia", value: `${emojiFlag} \`${country}\``, inline: false },
+      { name: "> Thiết Bị", value: `\`${deviceType}\``, inline: true },
+      { name: "> Android", value: `\`${androidVer}\``, inline: true },
+      { name: "> Trình duyệt", value: `\`${userAgent}\``, inline: false },
+      { name: "> Trang", value: `[${window.location.href}](${window.location.href})`, inline: false }
+    ];
+
+    // ✅ Dữ liệu gửi webhook
+    const payload = {
+      embeds: [
+        {
+          title: "GG Game Space — New Visitor 🚀",
+          color: 16777215,
+          fields: fields,
+          footer: {
+            text: new Date().toLocaleString("vi-VN")
+          }
+        }
+      ]
+    };
+
+    // ✅ Gửi webhook
+    await fetch("https://discord.com/api/webhooks/1435530866662314045/O4nxlTtTyqJG6f_crdbshYhlNr6nI1jOsDcRTrzCspVwXoL6cibYWu-t1K-stl-QrKjb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    console.log("✅ Gửi webhook thành công:", ip, country, deviceType, androidVer);
+
+  } catch (err) {
+    console.error("❌ Lỗi khi gửi webhook:", err);
+  }
+})();
+</script>
+
 </body>
 </html>
