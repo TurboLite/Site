@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* Iframe nền */
+#mainFrame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    z-index: 1;
+}
+
+/* Popup đen nháy nhanh */
+#redPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+
+    animation: flash 0.12s infinite; /* <-- nháy nhanh hơn */
+}
+
+@keyframes flash {
+    0%, 100% { background: rgba(0, 0, 0, 0.85); }
+    50% { background: rgba(0, 0, 0, 0.3); }
+}
+
+/* Khung chữ */
+.popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    animation: pulse 0.5s infinite;
+}
+
+/* Rung nhẹ */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Iframe nền -->
+<iframe id="mainFrame" src="https://turbolite.xyz/vrs"></iframe>
+
+<!-- Popup -->
+<div id="redPopup">
+    
+    </div>
+</div>
+
+</body>
+</html>
