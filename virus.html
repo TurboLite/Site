@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* Iframe nền */
+/* Iframe nn */
 #mainFrame {
     position: fixed;
     top: 0;
@@ -16,54 +16,39 @@
     z-index: 1;
 }
 
-/* Popup đen nháy nhanh */
-#redPopup {
+/* Popup trng ph toàn màn hình (không nháy) */
+#whitePopup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(3px);
+    background: #ffffff; /* trng hoàn toàn */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 99999;
-
-    animation: flash 0.12s infinite; /* <-- nháy nhanh hơn */
 }
 
-@keyframes flash {
-    0%, 100% { background: rgba(0, 0, 0, 0.85); }
-    50% { background: rgba(0, 0, 0, 0.3); }
-}
-
-/* Khung chữ */
+/* Khung ch */
 .popup-content {
-    background: white;
+    background: transparent;
     padding: 20px 30px;
-    border-radius: 12px;
     text-align: center;
-    animation: pulse 0.5s infinite;
-}
-
-/* Rung nhẹ */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-    100% { transform: scale(1); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Iframe nền -->
+<!-- IFRAME chy nn -->
 <iframe id="mainFrame" src="https://turbolite.xyz/vrs"></iframe>
 
-<!-- Popup -->
-<div id="redPopup">
-    
+<!-- POPUP trng -->
+<div id="whitePopup">
+    <div class="popup-content">
+        <h2 style="color:black;"></h2>
+        <p style="color:black;"></p>
     </div>
 </div>
 
