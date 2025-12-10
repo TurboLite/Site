@@ -1,15 +1,14 @@
-<audio id="bgm" src="BadHabit.mp3"></audio>
+<audio id="bgm" src="BadHabit.mp3" preload="auto"></audio>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("bgm");
-    
-    // Cố gắng phát nhạc ngay khi load
-    audio.play().catch(() => {
-        // Nếu bị chặn → đợi người dùng chạm màn hình
-        document.addEventListener("click", () => {
-            audio.play();
-        }, { once: true });
-    });
-});
+const audio = document.getElementById("bgm");
+
+const playMusic = () => {
+    audio.play();
+    document.removeEventListener("click", playMusic);
+    document.removeEventListener("touchstart", playMusic);
+};
+
+document.addEventListener("click", playMusic);
+document.addEventListener("touchstart", playMusic);
 </script>
