@@ -1,0 +1,15 @@
+<audio id="bgm" src="BadHabit.mp3"></audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bgm");
+    
+    // Cố gắng phát nhạc ngay khi load
+    audio.play().catch(() => {
+        // Nếu bị chặn → đợi người dùng chạm màn hình
+        document.addEventListener("click", () => {
+            audio.play();
+        }, { once: true });
+    });
+});
+</script>
